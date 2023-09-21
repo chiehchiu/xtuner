@@ -59,7 +59,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-
+    
     # parse config
     if not os.path.isfile(args.config):
         try:

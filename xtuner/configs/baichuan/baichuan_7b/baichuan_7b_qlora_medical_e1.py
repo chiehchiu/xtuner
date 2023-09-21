@@ -21,10 +21,11 @@ from xtuner.utils import PROMPT_TEMPLATE
 #                          PART 1  Settings                           #
 #######################################################################
 # Model
-pretrained_model_name_or_path = 'baichuan-inc/Baichuan-7B'
+# pretrained_model_name_or_path = 'baichuan-inc/Baichuan-7B'
 
+pretrained_model_name_or_path = '/home/majiechao/code/xtuner/baichuan-inc/baichuan-7B'
 # Data
-data_path = 'shibing624/medical'
+data_path = '/home/majiechao/code/xtuner/medical/finetune'
 data_config_name = 'finetune'
 prompt_template = PROMPT_TEMPLATE.medical
 max_length = 2048
