@@ -14,6 +14,8 @@
 
 ## 🎉 更新
 
+- **\[2023.09.20\]** 支持 [InternLM-20B](https://huggingface.co/internlm) 系列模型！
+- **\[2023.09.06\]** 支持 [Baichuan2](https://huggingface.co/baichuan-inc) 系列模型！
 - **\[2023.08.30\]** XTuner 正式发布！众多微调模型已上传至 [HuggingFace](https://huggingface.co/xtuner)！
 
 ## 📖 介绍
@@ -21,14 +23,33 @@
 XTuner 是一个轻量级微调大语言模型的工具库，由 [MMRazor](https://github.com/open-mmlab/mmrazor) 和 [MMDeploy](https://github.com/open-mmlab/mmdeploy) 团队联合开发。
 
 - **轻量级**: 支持在消费级显卡上微调大语言模型。对于 7B 参数量，微调所需的最小显存仅为 **8GB**，这使得用户可以使用几乎任何显卡（甚至免费资源，例如Colab）来微调获得自定义大语言模型助手。
-- **多样性**: 支持多种**大语言模型**（[InternLM](https://github.com/InternLM/InternLM)、[Llama2](https://github.com/facebookresearch/llama)、[ChatGLM2](https://huggingface.co/THUDM/chatglm2-6b)、[Qwen](https://github.com/QwenLM/Qwen-7B)、[Baichuan](https://github.com/baichuan-inc), ...），**数据集**（[MOSS_003_SFT](https://huggingface.co/datasets/fnlp/moss-003-sft-data), [Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca), [WizardLM](https://huggingface.co/datasets/WizardLM/WizardLM_evol_instruct_V2_196k), [oasst1](https://huggingface.co/datasets/timdettmers/openassistant-guanaco), [Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus), [Code Alpaca](https://huggingface.co/datasets/HuggingFaceH4/CodeAlpaca_20K), [Colorist](https://huggingface.co/datasets/burkelibbey/colors), ...）和**微调算法**（[QLoRA](http://arxiv.org/abs/2305.14314)、[LoRA](http://arxiv.org/abs/2106.09685)），支撑用户根据自身具体需求选择合适的解决方案。
+- **多样性**: 支持多种**大语言模型**（[InternLM](https://huggingface.co/internlm)、[Llama2](https://huggingface.co/meta-llama)、[ChatGLM2](https://huggingface.co/THUDM/chatglm2-6b)、[Qwen](https://huggingface.co/Qwen)、[Baichuan2](https://huggingface.co/baichuan-inc), ...），**数据集**（[MOSS_003_SFT](https://huggingface.co/datasets/fnlp/moss-003-sft-data), [Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca), [WizardLM](https://huggingface.co/datasets/WizardLM/WizardLM_evol_instruct_V2_196k), [oasst1](https://huggingface.co/datasets/timdettmers/openassistant-guanaco), [Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus), [Code Alpaca](https://huggingface.co/datasets/HuggingFaceH4/CodeAlpaca_20K), [Colorist](https://huggingface.co/datasets/burkelibbey/colors), ...）和**微调算法**（[QLoRA](http://arxiv.org/abs/2305.14314)、[LoRA](http://arxiv.org/abs/2106.09685)），支撑用户根据自身具体需求选择合适的解决方案。
 - **兼容性**: 兼容 [DeepSpeed](https://github.com/microsoft/DeepSpeed) 🚀 和 [HuggingFace](https://huggingface.co) 🤗 的训练流程，支撑用户无感式集成与使用。
 
 ## 🌟 示例
 
-- QLoRA 微调 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
-- 基于插件的对话 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
 - XTuner APIs所提供的开箱即用的模型与数据集 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1eBI9yiOkX-t7P-0-t9vS8y1x5KmWrkoU?usp=sharing)
+
+- QLoRA 微调 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
+
+- 基于插件的对话 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
+
+  <table>
+  <tr>
+    <th colspan="3" align="center">基于插件的对话 🔥🔥🔥</th>
+  </tr>
+  <tr>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/7c429d98-7630-4539-8aff-c89094826f8c"></a>
+  </td>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/05d02906-5a82-45bc-b4e3-2cc32d473b2c"></a>
+  </td>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/80395303-997a-47f2-b7d2-d585034df683"></a>
+  </td>
+  </tr>
+  </table>
 
 ## 🔥 支持列表
 
@@ -51,17 +72,13 @@ XTuner 是一个轻量级微调大语言模型的工具库，由 [MMRazor](https
 <tr valign="top">
 <td align="left" valign="top">
 <ul>
-  <li><a href="https://github.com/InternLM/InternLM">InternLM</a></li>
-  <li><a href="https://github.com/InternLM/InternLM">InternLM-Chat</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama2</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama2-Chat</a></li>
+  <li><a href="https://huggingface.co/internlm/internlm-7b">InternLM</a></li>
+  <li><a href="https://huggingface.co/meta-llama">Llama</a></li>
+  <li><a href="https://huggingface.co/meta-llama">Llama2</a></li>
   <li><a href="https://huggingface.co/THUDM/chatglm2-6b">ChatGLM2</a></li>
-  <li><a href="https://github.com/QwenLM/Qwen-7B">Qwen</a></li>
-  <li><a href="https://github.com/QwenLM/Qwen-7B">Qwen-Chat</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-7B">Baichuan-7B</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-13B">Baichuan-13B-Base</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-13B">Baichuan-13B-Chat</a></li>
+  <li><a href="https://huggingface.co/Qwen/Qwen-7B">Qwen</a></li>
+  <li><a href="https://huggingface.co/baichuan-inc/Baichuan-7B">Baichuan</a></li>
+  <li><a href="https://huggingface.co/baichuan-inc/Baichuan2-7B-Base">Baichuan2</a></li>
   <li>...</li>
 </ul>
 </td>
@@ -123,35 +140,6 @@ XTuner 是一个轻量级微调大语言模型的工具库，由 [MMRazor](https
   pip install -e '.[all]'
   ```
 
-### 对话 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
-
-<table>
-<tr>
-  <th colspan="3" align="center">基于插件的对话 🔥🔥🔥</th>
-</tr>
-<tr>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/7c429d98-7630-4539-8aff-c89094826f8c"></a>
-</td>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/05d02906-5a82-45bc-b4e3-2cc32d473b2c"></a>
-</td>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/80395303-997a-47f2-b7d2-d585034df683"></a>
-</td>
-</tr>
-</table>
-
-XTuner 提供与大语言模型对话的工具。
-
-- 例如，与基于插件微调获得的 Llama2-7B-Plugins 对话：
-
-  ```shell
-  xtuner chat hf meta-llama/Llama-2-7b-hf --adapter xtuner/Llama-2-7b-qlora-moss-003-sft --bot-name Llama2 --prompt-template moss_sft --with-plugins calculate solve search --command-stop-word "<eoc>" --answer-stop-word "<eom>" --no-streamer
-  ```
-
-更多示例，请查阅[文档](./docs/zh_cn/user_guides/chat.md)。
-
 ### 微调 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
 
 XTuner 支持微调大语言模型。数据集预处理指南请查阅[文档](./docs/zh_cn/user_guides/dataset_prepare.md)。
@@ -165,10 +153,16 @@ XTuner 支持微调大语言模型。数据集预处理指南请查阅[文档](.
   或者，如果所提供的配置文件不能满足使用需求，请导出所提供的配置文件并进行相应更改：
 
   ```shell
-  xtuner copy-cfg ${CONFIG_NAME} ${SAVE_DIR}
+  xtuner copy-cfg ${CONFIG_NAME} ${SAVE_PATH}
   ```
 
-- **步骤 1**，开始微调。例如，我们可以利用 QLoRA 算法在 oasst1 数据集上微调 InternLM-7B：
+- **步骤 1**，开始微调。
+
+  ```shell
+  xtuner train ${CONFIG_NAME_OR_PATH}
+  ```
+
+  例如，我们可以利用 QLoRA 算法在 oasst1 数据集上微调 InternLM-7B：
 
   ```shell
   # 单卡
@@ -177,26 +171,39 @@ XTuner 支持微调大语言模型。数据集预处理指南请查阅[文档](.
   NPROC_PER_NODE=${GPU_NUM} xtuner train internlm_7b_qlora_oasst1_e3
   ```
 
-  更多示例，请查阅[文档](./docs/zh_cn/user_guides/finetune.md).
+  更多示例，请查阅[文档](./docs/zh_cn/user_guides/finetune.md)。
+
+- **步骤 2**，将保存的 PTH 模型（如果使用的DeepSpeed，则将会是一个文件夹）转换为 HuggingFace 模型：
+
+  ```shell
+  xtuner convert pth_to_hf ${CONFIG_NAME_OR_PATH} ${PTH} ${SAVE_PATH}
+  ```
+
+### 对话 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
+
+XTuner 提供与大语言模型对话的工具。
+
+```shell
+xtuner chat ${NAME_OR_PATH_TO_LLM} --adapter {NAME_OR_PATH_TO_ADAPTER} [optional arguments]
+```
+
+例如，与 Llama2-7b + MOSS-003-SFT adapter 对话：
+
+```shell
+xtuner chat meta-llama/Llama-2-7b-hf --adapter xtuner/Llama-2-7b-qlora-moss-003-sft --bot-name Llama2 --prompt-template moss_sft --with-plugins calculate solve search --command-stop-word "<eoc>" --answer-stop-word "<eom>" --no-streamer
+```
+
+更多示例，请查阅[文档](./docs/zh_cn/user_guides/chat.md)。
 
 ### 部署
 
-- **步骤 0**，将 pth adapter 转换为 HuggingFace adapter：
+- **步骤 0**，将 HuggingFace adapter 合并到大语言模型：
 
   ```shell
-  xtuner convert adapter_pth2hf \
-      ${CONFIG} \
-      ${PATH_TO_PTH_ADAPTER} \
-      ${SAVE_PATH_TO_HF_ADAPTER}
-  ```
-
-  或者，直接将 pth adapter 合并到大语言模型：
-
-  ```shell
-  xtuner convert merge_adapter \
-      ${CONFIG} \
-      ${PATH_TO_PTH_ADAPTER} \
-      ${SAVE_PATH_TO_MERGED_LLM} \
+  xtuner convert merge \
+      ${NAME_OR_PATH_TO_LLM} \
+      ${NAME_OR_PATH_TO_ADAPTER} \
+      ${SAVE_PATH} \
       --max-shard-size 2GB
   ```
 
@@ -210,6 +217,8 @@ XTuner 支持微调大语言模型。数据集预处理指南请查阅[文档](.
       --top_p 0.95 \
       --seed 0
   ```
+
+  🔥 追求速度更快、显存占用更低的推理？欢迎体验 [LMDeploy](https://github.com/InternLM/lmdeploy) 提供的 4-bit 量化！使用指南请见[文档](https://github.com/InternLM/lmdeploy/tree/main#quantization)。
 
   🎯 我们正在与 [LMDeploy](https://github.com/InternLM/lmdeploy) 紧密合作，以实现基于插件对话的部署！
 

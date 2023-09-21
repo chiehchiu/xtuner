@@ -45,6 +45,10 @@ PROMPT_TEMPLATE = ConfigDict(
             'ensure that your responses are socially unbiased and positive in '
             'nature. \n<</SYS>>\n\n{input} [/INST]'),
         INSTRUCTION='[INST] {input} [/INST]'),
+    code_llama_chat=dict(
+        INSTRUCTION_START='[INST] {input} [/INST]',
+        INSTRUCTION='[INST] {input} [/INST]',
+    ),
     internlm_chat=dict(
         INSTRUCTION_START='<|User|>:{input}<eoh>\n<|Bot|>:',
         INSTRUCTION='<|User|>:{input}<eoh>\n<|Bot|>:'),
@@ -78,6 +82,9 @@ PROMPT_TEMPLATE = ConfigDict(
     baichuan_chat=dict(
         INSTRUCTION_START='<reserved_102>{input}<reserved_103>',
         INSTRUCTION='<reserved_102>{input}<reserved_103>'),
+    baichuan2_chat=dict(
+        INSTRUCTION_START='<reserved_106>{input}<reserved_107>',
+        INSTRUCTION='<reserved_106>{input}<reserved_107>'),
     wizardlm=dict(
         INSTRUCTION_START=('A chat between a curious user and an artificial '
                            'intelligence assistant. The assistant gives '

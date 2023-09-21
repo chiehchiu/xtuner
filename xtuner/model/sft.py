@@ -8,7 +8,7 @@ from peft import PeftType, get_peft_model, prepare_model_for_kbit_training
 from torch import nn
 
 from xtuner.registry import BUILDER
-from .fast_forward import dispatch_fast_forward
+from .modules import dispatch_modules
 from .utils import LoadWoInit, find_all_linear_names, traverse_dict
 
 
@@ -23,6 +23,7 @@ class SupervisedFinetune(BaseModel):
         with LoadWoInit():
             self.llm = self._build_from_cfg_or_module(llm)
         self.llm.config.use_cache = False
+        dispatch_modules(self.llm)
 
         if isinstance(lora, dict) or isinstance(lora, Config) or isinstance(
                 lora, ConfigDict):
@@ -47,8 +48,6 @@ class SupervisedFinetune(BaseModel):
 
             # enable gradient checkpointing for memory efficiency
             self.llm.gradient_checkpointing_enable()
-
-        dispatch_fast_forward(self.llm)
 
         self._is_init = True
 

@@ -5,7 +5,11 @@ Single-turn dialogue instruction fine-tuning aims to enhance the model's ability
 1. Construct data according to the corresponding dataset format
 2. Insert dialogue templates into the dataset (optional)
 
-XTuner supports using HuggingFace Hub datasets or custom datasets for SFT (Supervised FineTune). The main difference between them is that when using the HuggingFace Hub dataset, the original data needs to be mapped to the XTuner-defined [single-turn dialogue data format](./dataset_format.md#single-turn-dialogue-dataset-format), whereas for custom datasets, it is recommended that users construct the dataset according to the single-turn dialogue data format.
+XTuner offers support for utilizing HuggingFace Hub datasets, Alpaca-Format custom datasets, or other format custom datasets for SFT (Supervised FineTune). The main differences between these options are as follows:
+
+1. When using the HuggingFace Hub dataset for SFT, it is necessary to map the original data to the XTuner-defined [single-turn dialogue data format](./dataset_format.md#single-turn-dialogue-dataset-format)
+2. When utilizing Alpaca-Format custom datasets for SFT, it is crucial to ensure that the custom dataset includes a minimum of three columns: 'instruction', 'input', and 'output'.
+3. When working with other custom datasets for SFT, it is recommended that users construct the dataset according to the single-turn dialogue data format. This is highly beneficial as it significantly reduces the time required for data preprocessing.
 
 ## Using Dataset in HuggingFace Hub
 
@@ -129,12 +133,13 @@ from xtuner.dataset import process_hf_dataset
 from datasets import load_dataset
 - from xtuner.dataset.map_fns import alpaca_map_fn, template_map_fn_factory
 + from xtuner.dataset.map_fns import template_map_fn_factory
-+ from .map_fn import alpaca_map_fn
++ from mmengine.config import read_base
++ with read_base():
++     from .map_fn import alpaca_map_fn
 ...
 #######################################################################
 #                          PART 1  Settings                           #
 #######################################################################
-- alpaca_zh_path = 'silk-road/alpaca-data-gpt4-chinese'
 - alpaca_en_path = 'tatsu-lab/alpaca'
 + data_path = 'path/to/your/data'
 
@@ -164,9 +169,91 @@ train_dataloader = dict(
 ...
 ```
 
+#### Step 6, Log Processed Dataset (Optional)
+
+After modifying the config file, you can print the first data of the processed dataset to verify whether the dataset has been constructed correctly.
+
+```bash
+xtuner log-dataset $CONFIG
+```
+
+`$CONFIG` represents the file path of the modified configuration file in Step 5.
+
 ## Using Custom Datasets
 
-When using a custom single-turn dialogue dataset for command fine-tuning, we recommend constructing the dataset in the [single-turn dialogue data format](./dataset_format.md#single-turn-dialogue-dataset-format) as defined by XTuner. If the custom dataset format is oasst1 or other formats, you can refer to the section on [Using Datasets in HuggingFace Hub](#using-dataset-in-huggingface-hub).
+### Using Alpaca Format Custom Datasets
+
+If the data format of the custom dataset meets the 'alpaca' format, you can refer to the following steps for SFT training.
+
+#### Step 1, List Candidate Model Names
+
+```bash
+xtuner list-cfg -p internlm
+```
+
+`-p` is for fuzzy search. If you want to train other models, you can replace `internlm` with other model names supported by XTuner.
+
+#### Step 2, Export the Config File
+
+```bash
+xtuner copy-cfg ${CONFIG_NAME} ${SAVE_DIR}
+```
+
+As the custom dataset follows the Alpaca format, 'CONFIG_NAME' should select the ALPACA-related candidate model names listed in Step 1. For example, execute the following command to export the 'internlm_7b_qlora_alpaca_e3' config to the current directory:
+
+```bash
+xtuner copy-cfg internlm_7b_qlora_alpaca_e3 .
+```
+
+#### Step 3, Setting Dialogue Template (Optional)
+
+Refer to [Setting the Dialogue Template](#step-4-set-conversation-templates-optional).
+
+#### Step 4, Modify Config File
+
+The config copied in Step 2 needs to be modified as follows:
+
+```diff
+from xtuner.dataset import process_hf_dataset
+from datasets import load_dataset
+from xtuner.dataset.map_fns import alpaca_map_fn, template_map_fn_factory
+from xtuner.utils import PROMPT_TEMPLATE
+...
+#######################################################################
+#                          PART 1  Settings                           #
+#######################################################################
+- alpaca_en_path = 'tatsu-lab/alpaca'
++ data_path = 'path/to/your/json/data'
+
+prompt_template = PROMPT_TEMPLATE.alpaca
+...
+#######################################################################
+#                      STEP 3  Dataset & Dataloader                   #
+#######################################################################
+train_dataset = dict(
+    type=process_hf_dataset,
+-   dataset=dict(type=load_dataset, path=data_path),
++   dataset=dict(
++       type=load_dataset, path='json', data_files=dict(train=data_path)),
+    tokenizer=tokenizer,
+    max_length=max_length,
+    dataset_map_fn=alpaca_map_fn,
+    template_map_fn=dict(
+        type=template_map_fn_factory, template=prompt_template),
+    remove_unused_columns=True,
+    shuffle_before_pack=True,
+    pack_to_max_length=pack_to_max_length)
+
+train_dataloader = dict(
+    batch_size=batch_size,
+    num_workers=dataloader_num_workers,
+    dataset=train_dataset,
+    sampler=dict(type=DefaultSampler, shuffle=True),
+    collate_fn=dict(type=default_collate_fn))
+...
+```
+
+### Using Other Format Custom Datasets
 
 ### Step 1, Dataset Preparation
 
@@ -226,9 +313,8 @@ from datasets import load_dataset
 #######################################################################
 #                          PART 1  Settings                           #
 #######################################################################
-- alpaca_zh_path = 'silk-road/alpaca-data-gpt4-chinese'
 - alpaca_en_path = 'tatsu-lab/alpaca'
-+ data_path = 'path/to/your/data'
++ data_path = 'path/to/your/json/data'
 
 + prompt_template = PROMPT_TEMPLATE.alpaca
 #######################################################################
@@ -236,7 +322,9 @@ from datasets import load_dataset
 #######################################################################
 train_dataset = dict(
     type=process_hf_dataset,
-    dataset=dict(type=load_dataset, path=data_path),
+-   dataset=dict(type=load_dataset, path=data_path),
++   dataset=dict(
++       type=load_dataset, path='json', data_files=dict(train=data_path)),
     tokenizer=tokenizer,
     max_length=max_length,
 +   dataset_map_fn=None,
@@ -254,3 +342,13 @@ train_dataloader = dict(
     collate_fn=dict(type=default_collate_fn))
 ...
 ```
+
+#### Step 6, Check Processed Dataset (Optional)
+
+After modifying the config file, you can execute the 'xtuner/tools/check_custom_dataset.py' script to verify the correct construction of the dataset.
+
+```bash
+xtuner check-custom-dataset $CONFIG
+```
+
+`$CONFIG` represents the file path of the modified configuration file in Step 5.

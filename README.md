@@ -14,6 +14,8 @@ English | [简体中文](README_zh-CN.md)
 
 ## 🎉 News
 
+- **\[2023.09.20\]** Support [InternLM-20B](https://huggingface.co/internlm) models!
+- **\[2023.09.06\]** Support [Baichuan2](https://huggingface.co/baichuan-inc) models!
 - **\[2023.08.30\]** XTuner is released, with multiple fine-tuned adapters on [HuggingFace](https://huggingface.co/xtuner).
 
 ## 📖 Introduction
@@ -21,14 +23,33 @@ English | [简体中文](README_zh-CN.md)
 XTuner is a toolkit for efficiently fine-tuning LLM, developed by the [MMRazor](https://github.com/open-mmlab/mmrazor) and [MMDeploy](https://github.com/open-mmlab/mmdeploy) teams.
 
 - **Efficiency**: Support LLM fine-tuning on consumer-grade GPUs. The minimum GPU memory required for 7B LLM fine-tuning is only **8GB**, indicating that users can use nearly any GPU (even the free resource, *e.g.*, Colab) to fine-tune custom LLMs.
-- **Versatile**: Support various **LLMs** ([InternLM](https://github.com/InternLM/InternLM), [Llama2](https://github.com/facebookresearch/llama), [ChatGLM2](https://huggingface.co/THUDM/chatglm2-6b), [Qwen](https://github.com/QwenLM/Qwen-7B), [Baichuan](https://github.com/baichuan-inc), ...), **datasets** ([MOSS_003_SFT](https://huggingface.co/datasets/fnlp/moss-003-sft-data), [Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca), [WizardLM](https://huggingface.co/datasets/WizardLM/WizardLM_evol_instruct_V2_196k), [oasst1](https://huggingface.co/datasets/timdettmers/openassistant-guanaco), [Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus), [Code Alpaca](https://huggingface.co/datasets/HuggingFaceH4/CodeAlpaca_20K), [Colorist](https://huggingface.co/datasets/burkelibbey/colors), ...) and **algorithms** ([QLoRA](http://arxiv.org/abs/2305.14314), [LoRA](http://arxiv.org/abs/2106.09685)), allowing users to choose the most suitable solution for their requirements.
+- **Versatile**: Support various **LLMs** ([InternLM](https://huggingface.co/internlm), [Llama2](https://huggingface.co/meta-llama), [ChatGLM2](https://huggingface.co/THUDM/chatglm2-6b), [Qwen](https://huggingface.co/Qwen), [Baichuan2](https://huggingface.co/baichuan-inc), ...), **datasets** ([MOSS_003_SFT](https://huggingface.co/datasets/fnlp/moss-003-sft-data), [Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca), [WizardLM](https://huggingface.co/datasets/WizardLM/WizardLM_evol_instruct_V2_196k), [oasst1](https://huggingface.co/datasets/timdettmers/openassistant-guanaco), [Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus), [Code Alpaca](https://huggingface.co/datasets/HuggingFaceH4/CodeAlpaca_20K), [Colorist](https://huggingface.co/datasets/burkelibbey/colors), ...) and **algorithms** ([QLoRA](http://arxiv.org/abs/2305.14314), [LoRA](http://arxiv.org/abs/2106.09685)), allowing users to choose the most suitable solution for their requirements.
 - **Compatibility**: Compatible with [DeepSpeed](https://github.com/microsoft/DeepSpeed) 🚀 and [HuggingFace](https://huggingface.co) 🤗 training pipeline, enabling effortless integration and utilization.
 
 ## 🌟 Demos
 
-- QLoRA Fine-tune [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
-- Plugin-based Chat [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
 - Ready-to-use models and datasets from XTuner API [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1eBI9yiOkX-t7P-0-t9vS8y1x5KmWrkoU?usp=sharing)
+
+- QLoRA Fine-tune [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
+
+- Plugin-based Chat [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
+
+  <table>
+  <tr>
+    <th colspan="3" align="center">Examples of Plugin-based Chat 🔥🔥🔥</th>
+  </tr>
+  <tr>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/7c429d98-7630-4539-8aff-c89094826f8c"></a>
+  </td>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/05d02906-5a82-45bc-b4e3-2cc32d473b2c"></a>
+  </td>
+  <td>
+  <a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/80395303-997a-47f2-b7d2-d585034df683"></a>
+  </td>
+  </tr>
+  </table>
 
 ## 🔥 Supports
 
@@ -51,17 +72,13 @@ XTuner is a toolkit for efficiently fine-tuning LLM, developed by the [MMRazor](
 <tr valign="top">
 <td align="left" valign="top">
 <ul>
-  <li><a href="https://github.com/InternLM/InternLM">InternLM</a></li>
-  <li><a href="https://github.com/InternLM/InternLM">InternLM-Chat</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama2</a></li>
-  <li><a href="https://github.com/facebookresearch/llama">Llama2-Chat</a></li>
+  <li><a href="https://huggingface.co/internlm/internlm-7b">InternLM</a></li>
+  <li><a href="https://huggingface.co/meta-llama">Llama</a></li>
+  <li><a href="https://huggingface.co/meta-llama">Llama2</a></li>
   <li><a href="https://huggingface.co/THUDM/chatglm2-6b">ChatGLM2</a></li>
-  <li><a href="https://github.com/QwenLM/Qwen-7B">Qwen</a></li>
-  <li><a href="https://github.com/QwenLM/Qwen-7B">Qwen-Chat</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-7B">Baichuan-7B</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-13B">Baichuan-13B-Base</a></li>
-  <li><a href="https://github.com/baichuan-inc/Baichuan-13B">Baichuan-13B-Chat</a></li>
+  <li><a href="https://huggingface.co/Qwen/Qwen-7B">Qwen</a></li>
+  <li><a href="https://huggingface.co/baichuan-inc/Baichuan-7B">Baichuan</a></li>
+  <li><a href="https://huggingface.co/baichuan-inc/Baichuan2-7B-Base">Baichuan2</a></li>
   <li>...</li>
 </ul>
 </td>
@@ -123,35 +140,6 @@ XTuner is a toolkit for efficiently fine-tuning LLM, developed by the [MMRazor](
   pip install -e '.[all]'
   ```
 
-### Chat [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
-
-<table>
-<tr>
-  <th colspan="3" align="center">Examples of Plugins-based Chat 🔥🔥🔥</th>
-</tr>
-<tr>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/7c429d98-7630-4539-8aff-c89094826f8c"></a>
-</td>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/05d02906-5a82-45bc-b4e3-2cc32d473b2c"></a>
-</td>
-<td>
-<a><img src="https://github.com/InternLM/lmdeploy/assets/36994684/80395303-997a-47f2-b7d2-d585034df683"></a>
-</td>
-</tr>
-</table>
-
-XTuner provides tools to chat with pretrained / fine-tuned LLMs.
-
-- For example, we can start the chat with Llama2-7B-Plugins by
-
-  ```shell
-  xtuner chat hf meta-llama/Llama-2-7b-hf --adapter xtuner/Llama-2-7b-qlora-moss-003-sft --bot-name Llama2 --prompt-template moss_sft --with-plugins calculate solve search --command-stop-word "<eoc>" --answer-stop-word "<eom>" --no-streamer
-  ```
-
-For more examples, please see [chat.md](./docs/en/user_guides/chat.md).
-
 ### Fine-tune [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QAEZVBfQ7LZURkMUtaq0b-5nEQII9G9Z?usp=sharing)
 
 XTuner supports the efficient fine-tune (*e.g.*, QLoRA) for LLMs. Dataset prepare guides can be found on [dataset_prepare.md](./docs/en/user_guides/dataset_prepare.md).
@@ -165,10 +153,16 @@ XTuner supports the efficient fine-tune (*e.g.*, QLoRA) for LLMs. Dataset prepar
   Or, if the provided configs cannot meet the requirements, please copy the provided config to the specified directory and make specific modifications by
 
   ```shell
-  xtuner copy-cfg ${CONFIG_NAME} ${SAVE_DIR}
+  xtuner copy-cfg ${CONFIG_NAME} ${SAVE_PATH}
   ```
 
-- **Step 1**, start fine-tuning. For example, we can start the QLoRA fine-tuning of InternLM-7B with oasst1 dataset by
+- **Step 1**, start fine-tuning.
+
+  ```shell
+  xtuner train ${CONFIG_NAME_OR_PATH}
+  ```
+
+  For example, we can start the QLoRA fine-tuning of InternLM-7B with oasst1 dataset by
 
   ```shell
   # On a single GPU
@@ -180,24 +174,37 @@ XTuner supports the efficient fine-tune (*e.g.*, QLoRA) for LLMs. Dataset prepar
 
   For more examples, please see [finetune.md](./docs/en/user_guides/finetune.md).
 
-### Deployment
-
-- **Step 0**, convert the pth adapter to HuggingFace adapter, by
+- **Step 2**, convert the saved PTH model (if using DeepSpeed, it will be a directory) to HuggingFace model, by
 
   ```shell
-  xtuner convert adapter_pth2hf \
-      ${CONFIG} \
-      ${PATH_TO_PTH_ADAPTER} \
-      ${SAVE_PATH_TO_HF_ADAPTER}
+  xtuner convert pth_to_hf ${CONFIG_NAME_OR_PATH} ${PTH} ${SAVE_PATH}
   ```
 
-  or, directly merge the pth adapter to pretrained LLM, by
+### Chat [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/144OuTVyT_GvFyDMtlSlTzcxYIfnRsklq?usp=sharing)
+
+XTuner provides tools to chat with pretrained / fine-tuned LLMs.
+
+```shell
+xtuner chat ${NAME_OR_PATH_TO_LLM} --adapter {NAME_OR_PATH_TO_ADAPTER} [optional arguments]
+```
+
+For example, we can start the chat with Llama2-7b with adapter trained from MOSS-003-SFT by
+
+```shell
+xtuner chat meta-llama/Llama-2-7b-hf --adapter xtuner/Llama-2-7b-qlora-moss-003-sft --bot-name Llama2 --prompt-template moss_sft --with-plugins calculate solve search --command-stop-word "<eoc>" --answer-stop-word "<eom>" --no-streamer
+```
+
+For more examples, please see [chat.md](./docs/en/user_guides/chat.md).
+
+### Deployment
+
+- **Step 0**, merge the HuggingFace adapter to pretrained LLM, by
 
   ```shell
-  xtuner convert merge_adapter \
-      ${CONFIG} \
-      ${PATH_TO_PTH_ADAPTER} \
-      ${SAVE_PATH_TO_MERGED_LLM} \
+  xtuner convert merge \
+      ${NAME_OR_PATH_TO_LLM} \
+      ${NAME_OR_PATH_TO_ADAPTER} \
+      ${SAVE_PATH} \
       --max-shard-size 2GB
   ```
 
@@ -212,7 +219,9 @@ XTuner supports the efficient fine-tune (*e.g.*, QLoRA) for LLMs. Dataset prepar
       --seed 0
   ```
 
-  🎯 We are woking closely with [LMDeploy](https://github.com/InternLM/lmdeploy), to implement the deployment of **plugins-based chat**!
+  🔥 Seeking efficient inference with less GPU memory? Try 4-bit quantization from [LMDeploy](https://github.com/InternLM/lmdeploy)! For more details, see [here](https://github.com/InternLM/lmdeploy/tree/main#quantization).
+
+  🎯 We are woking closely with [LMDeploy](https://github.com/InternLM/lmdeploy), to implement the deployment of **plugin-based chat**!
 
 ### Evaluation
 
